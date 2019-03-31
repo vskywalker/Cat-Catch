@@ -24,6 +24,10 @@ def make_prediction(my_image, my_label_y, parameters):
     my_image = scipy.misc.imresize(image, size=(num_px, num_px)).reshape((num_px*num_px*3,1))
     my_image = my_image/255.
     my_predicted_image = predict(my_image, my_label_y, parameters)
+    if my_predicted_image == 1.0:
+        my_predicted_image = "it's a cat"
+    else:
+        my_predicted_image = "it's not a cat"
     return my_predicted_image
 
 parameters = load_model(file_name)
